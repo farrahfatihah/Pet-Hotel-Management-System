@@ -8,19 +8,17 @@ import java.util.ArrayList;
  *
  * @author frrah
  */
-public class Client {
+public class Client extends User {
     
     private String phone;
     private String address;
-    private ArrayList<String> pets = new ArrayList<>();
+    private ArrayList<String> clientPets = new ArrayList<>();
     
-    public Client (String id, String username, String password, String name, String phone, String address){
+    public Client (String id, String username, String password, String fullName, String email, String phone, String address){
+        super (id, username, password, fullName, email);
         this.phone = phone;
         this.address = address;
-        //tak siap lagi
     }
-    
-    //add deleteAccount
     
     public String getPhone(){
         return phone;
@@ -39,16 +37,16 @@ public class Client {
     }
     
     public void addPet(String pet){
-        pets.add(pet);
+        clientPets.add(pet);
         System.out.println(pet + "successfully added.");
     }
     
     public void removePet(String pet){
-        pets.remove(pet);
+        clientPets.remove(pet);
         System.out.println(pet + "successfully removed.");
     }
     
     public void displayPet(){
-        System.out.println(pets);
+        System.out.println(clientPets);
     }
 }
