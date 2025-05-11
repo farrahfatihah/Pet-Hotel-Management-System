@@ -71,5 +71,15 @@ public class User {
         }
         return false; // Invalid email
     }
+    // check aunthenticate for login
+    public boolean authenticate(String inputUsername, String inputPassword) {
+        return this.username.equals(inputUsername) && this.password.equals(inputPassword);
+    }
+    // convert user details to csv format for file saving
+    @Override
+    public String toString() {
+        return id + "," + username + "," + password + "," + name + "," + email;
+    }
+    
     
 }   
