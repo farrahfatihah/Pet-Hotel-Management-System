@@ -4,6 +4,8 @@
  */
 package PetHotelManagement;
 import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author frrah
@@ -12,41 +14,78 @@ public class Client extends User {
     
     private String phone;
     private String address;
-    private ArrayList<String> clientPets = new ArrayList<>();
+    private final List<Pet> clientPets; //list interface
     
-    public Client (String id, String username, String password, String fullName, String email, String phone, String address){
-        super (id, username, password, fullName, email);
-        this.phone = phone;
-        this.address = address;
+    public Client(String id, String username, String password, String fullName, String email, String phone, String address) {
+        super(id, username, password, fullName, email);
+        setPhone(phone);
+        setAddress(address);
+        this.clientPets = new ArrayList<>();
     }
     
-    public String getPhone(){
+    public String getPhone() {
         return phone;
     }
     
-    public void setPhone (String phone) {
-        this.phone = phone;
+    //letak validation, digits only, 8-15 digits
+    public void setPhone(String phone) {
+        if (phone != null && phone.matches("\\d{8,11}")) {
+            this.phone = phone;
+        } else {
+            System.out.println("Invalid phone number format. Must be 8-11 digits");
+        }
     }
     
-    public String getAddress(){
+    public String getAddress() {
         return address;
     }
-    
-    public void setAddress (String address) {
-        this.address = address;
+
+    public void setAddress(String address) {
+        if (address == null) {
+            this.address = "";
+            return;
+        }
+        this.address = address.trim();
     }
     
-    public void addPet(String pet){
-        clientPets.add(pet);
-        System.out.println(pet + "successfully added.");
+    public List<Pet> getClientPets() {
+        return new ArrayList<>(clientPets);
     }
-    
-    public void removePet(String pet){
-        clientPets.remove(pet);
-        System.out.println(pet + "successfully removed.");
+
+    public void setClientPets(List<Pet> clientPets) {
+        if (clientPets != null) {
+        this.clientPets.clear();
+        this.clientPets.addAll(clientPets);
+        }
     }
-    
-    public void displayPet(){
-        System.out.println(clientPets);
+
+    public void addPet(Pet pet) {
+        if (pet != null && !clientPets.contains(pet)) {
+            clientPets.add(pet);
+            System.out.println(pet.getPetName() + " successfully added.");
+        } else {
+            System.out.println("Pet is null or already registered.");
+        }
+    }
+
+    public boolean removePet(Pet pet) {
+        if (clientPets.remove(pet)) {
+            System.out.println(pet.getPetName() + " successfully removed.");
+            return true;
+        }
+        System.out.println("Pet not found");
+        return false;
+    }
+
+    public void displayPet() {
+        if (clientPets.isEmpty()) {
+            System.out.println("No pets registered for " + this.getName() + ".");
+        } else {
+            System.out.println("\nPets registered for " + this.getName() + ":");
+            for (Pet pet : clientPets) {
+                System.out.printf("- %s (ID: %s)%n",pet.getPetName(), pet.getPetId());
+            }
+        }
     }
 }
+    
