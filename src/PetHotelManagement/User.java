@@ -10,16 +10,26 @@ package PetHotelManagement;
  */
 public class User {
     
+    private String id;
     private String username;
     private String password;
-    private String fullName;
+    private String name;
     private String email;
 
-    public User(String username, String password, String fullName, String email) {
+    public User(String id, String username, String password, String name, String email) {
+        this.id = id;
         this.username = username;
         this.password = password;
-        this.fullName = fullName;
+        this.name = name;
         this.email = email;
+    }
+    
+    public String getId() {
+        return id;
+    }
+    
+    public void setId(String id) {
+        this.id = id;
     }
     
     public String getUsername() {
@@ -38,12 +48,12 @@ public class User {
         this.password = password;
     }
 
-    public String getFullName() {
-        return fullName;
+    public String getName() {
+        return name;
     }
 
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
+    public void setFullName(String name) {
+        this.name = name;
     }
 
     public String getEmail() {

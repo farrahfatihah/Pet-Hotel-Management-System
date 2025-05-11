@@ -3,11 +3,56 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package PetHotelManagement;
+import java.util.ArrayList;
 
 /**
  *
  * @author frrah
  */
-public class Client {
+public class Client extends User {
     
+    private String phone;
+    private String address;
+    private ArrayList<Pet> clientPets;
+    
+    public Client(String id, String username, String password, String name, String email, String phone, String address) {
+        super(id, username, password, name, email);
+        this.phone = phone;
+        this.address = address;
+        this.clientPets = new ArrayList<>();
+    }
+    
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public void addPet(Pet pet) {
+        clientPets.add(pet);
+    }
+
+    public void removePet(Pet pet) {
+        clientPets.remove(pet);
+    }
+
+    public void displayPet() {
+        if (clientPets.isEmpty()) {
+            System.out.println("No pets registered.");
+        } else {
+            for (Pet pet : clientPets) {
+                System.out.println("- " + pet.getPetName() + " (ID: " + pet.getPetId() + ")");
+            }
+        }
+    }
 }
