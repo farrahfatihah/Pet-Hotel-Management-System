@@ -4,10 +4,7 @@
  */
 package PetHotelManagement;
 import java.util.ArrayList;
-<<<<<<< HEAD
 
-=======
->>>>>>> 39b094b581869df9edf098f88b78c56d6b93e107
 /**
  *
  * @author frrah
@@ -16,7 +13,6 @@ public class Client extends User {
     
     private String phone;
     private String address;
-<<<<<<< HEAD
     private ArrayList<Pet> clientPets;
     
     public Client(String id, String username, String password, String name, String email, String phone, String address) {
@@ -41,13 +37,23 @@ public class Client extends User {
     public void setAddress(String address) {
         this.address = address;
     }
+    
+    public ArrayList<Pet> getClientPets() {
+        return clientPets;
+    }
+
+    public void setClientPets(ArrayList<Pet> clientPets) {
+        this.clientPets = clientPets;
+    }
 
     public void addPet(Pet pet) {
         clientPets.add(pet);
+        System.out.println(pet.getPetName() + " successfully added.");
     }
 
     public void removePet(Pet pet) {
         clientPets.remove(pet);
+        System.out.println(pet.getPetName() + " successfully removed.");
     }
 
     public void displayPet() {
@@ -58,45 +64,6 @@ public class Client extends User {
                 System.out.println("- " + pet.getPetName() + " (ID: " + pet.getPetId() + ")");
             }
         }
-=======
-    private ArrayList<String> pets = new ArrayList<>();
-    
-    public Client (String id, String username, String password, String name, String phone, String address){
-        this.phone = phone;
-        this.address = address;
-        //tak siap lagi
-    }
-    
-    //add deleteAccount
-    
-    public String getPhone(){
-        return phone;
-    }
-    
-    public void setPhone (String phone) {
-        this.phone = phone;
-    }
-    
-    public String getAddress(){
-        return address;
-    }
-    
-    public void setAddress (String address) {
-        this.address = address;
-    }
-    
-    public void addPet(String pet){
-        pets.add(pet);
-        System.out.println(pet + "successfully added.");
-    }
-    
-    public void removePet(String pet){
-        pets.remove(pet);
-        System.out.println(pet + "successfully removed.");
-    }
-    
-    public void displayPet(){
-        System.out.println(pets);
->>>>>>> 39b094b581869df9edf098f88b78c56d6b93e107
     }
 }
+    
