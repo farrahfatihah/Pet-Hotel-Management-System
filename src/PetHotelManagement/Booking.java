@@ -39,7 +39,7 @@ public class Booking {
         this.checkInDate = checkInDate;
     }
     
-    public Date setCheckOutDate() {
+    public Date getCheckOutDate() {
         return checkOutDate;
     }
     
