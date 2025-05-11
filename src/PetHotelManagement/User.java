@@ -9,25 +9,17 @@ package PetHotelManagement;
  * @author frrah
  */
 public class User {
-    
-<<<<<<< HEAD
-    private String id;
-    private String username;
-    private String password;
-    private String fullName;
-    private String email;
 
-    public User(String id, String username, String password, String fullName, String email) {
-=======
-    //use protected to allow inheritance
-    protected String id;
+    protected final String id;
     protected String username;
     protected String password;
     protected String name;
     protected String email;
 
     public User(String id, String username, String password, String name, String email) {
->>>>>>> 4e7f26b5e7f4b1ca0adb6ac2aa045244b664823b
+        if (!isValidPassword(password)) {
+            throw new IllegalArgumentException("Password must be at least 8 characters long and include uppercase, lowercase, number, and special character.");
+        }
         this.id = id;
         this.username = username;
         this.password = password;
@@ -35,23 +27,21 @@ public class User {
         this.email = email;
     }
     
-<<<<<<< HEAD
-=======
     //id and password is permanent identifier, no need setters (shouldnt change)
->>>>>>> 4e7f26b5e7f4b1ca0adb6ac2aa045244b664823b
     public String getId() {
         return id;
     }
     
-<<<<<<< HEAD
-    public void setId (String id){
-        this.id = id;
-    }
-    
-=======
->>>>>>> 4e7f26b5e7f4b1ca0adb6ac2aa045244b664823b
     public String getUsername() {
         return username;
+    }
+    
+    public String getPassword() {
+        return password;
+    }
+    
+    public String getName() {
+        return name;
     }
 
     public boolean setUsername(String newUsername) {
@@ -62,16 +52,12 @@ public class User {
         return false; // Failed validation
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getName() {
-        return name;
+    public boolean setPassword(String newPassword) {
+        if (isValidPassword(newPassword)) {
+            this.password = newPassword;
+            return true;
+        }
+        return false;
     }
 
     public void setName(String newName) {
@@ -100,6 +86,13 @@ public class User {
     public String toString() {
         return id + "," + username + "," + password + "," + name + "," + email;
     }
-    
-    
+    //check password strength
+    private boolean isValidPassword(String password) {
+        return password != null &&
+               password.length() >= 8 &&
+               password.matches(".*[A-Z].*") &&     // at least one uppercase
+               password.matches(".*[a-z].*") &&     // at least one lowercase
+               password.matches(".*\\d.*") &&       // at least one digit
+               password.matches(".*[!@#$%^&*()_+=<>?{}\\[\\]-].*"); // at least one symbol
+    }
 }   
